@@ -26,7 +26,7 @@ insertProductAmount()
 
 function addProduct(){
     if (newProductInput.value != ''){
-        if (confirm('Do you want add "' + newProductInput.value + '" to product list') == true){
+        if (confirm('Do you want add "' + newProductInput.value + '" to product list')){
             products.push(newProductInput.value)
             insertProduct()
             insertProductAmount()
@@ -73,16 +73,21 @@ function editProduct(item){
     newProductInput.focus()
     removeHide()
     newProductInput.value = products[item]
-    console.log(item)
-    buttonEdit.addEventListener('click', function(){
-        console.log(item)
+    buttonEdit.setAttribute('onclick', 'editProductConfirm(' + `${item}` + ')');  
+}
+
+function editProductConfirm(item){
+    if(confirm('Do you want edit "' + products[item] + '" ?')){
+        let currentProductName = products[item]
         products.splice(item, 1, newProductInput.value)
         insertProduct()
         insertProductAmount()
         addHide()
+        alert('Edit "' +  currentProductName + '" to "' + newProductInput.value + '" successfully!')
         newProductInput.value = ''
-        // alert('Edit to "' + products[item] + '" successfully!')
-    })    
+    } else {
+        alert('You cancelled')
+    }
 }
 
 function cancelEdit(){
