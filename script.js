@@ -79,7 +79,7 @@ function editProduct(item){
 function editProductConfirm(item){
     if(confirm('Do you want edit "' + products[item] + '" ?')){
         let currentProductName = products[item]
-        products.splice(item, 1, newProductInput.value)
+        products[item] = newProductInput.value
         insertProduct()
         insertProductAmount()
         addHide()
